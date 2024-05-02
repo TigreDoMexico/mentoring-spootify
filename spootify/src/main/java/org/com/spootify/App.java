@@ -1,10 +1,14 @@
+package org.com.spootify;
+
+import org.com.spootify.entities.*;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class SpotifyApp {
-
+public class App 
+{
     public static void clearTerminal(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -13,7 +17,7 @@ public class SpotifyApp {
     public static void printSpootifyLogo(){
         System.out.println("\u001B[32m\n               ⢀⣠⣤⣤⣶⣶⣶⣶⣤⣤⣄⡀\n            ⢀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀\n        ⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦\n        ⠀⢀⣾⣿⡿⠿⠛⠛⠛⠉⠉⠉⠉⠛⠛⠛⠿⠿⣿⣿⣿⣿⣿⣷⡀\n        ⠀⣾⣿⣿⣇⠀⣀⣀⣠⣤⣤⣤⣤⣤⣀⣀⠀⠀⠀⠈⠙⠻⣿⣿⣷ \n        ⢠⣿⣿⣿⣿⡿⠿⠟⠛⠛⠛⠛⠛⠛⠻⠿⢿⣿⣶⣤⣀⣠⣿⣿⣿⡄\n        ⢸⣿⣿⣿⣿⣇⣀⣀⣤⣤⣤⣤⣤⣄⣀⣀⠀⠀⠉⠛⢿⣿⣿⣿⣿⡇  sPOOtify\n        ⠘⣿⣿⣿⣿⣿⠿⠿⠛⠛⠛⠛⠛⠛⠿⠿⣿⣶⣦⣤⣾⣿⣿⣿⣿⠃  by: @duvrdx\n        ⠀⢿⣿⣿⣿⣿⣤⣤⣤⣤⣶⣶⣦⣤⣤⣄⡀⠈⠙⣿⣿⣿⣿⣿⡿\n        ⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⣿⣿⡿⠁\n        ⠀⠀⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟\n        ⠀⠀⠀⠀⠈⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠁\n        ⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠛⠿⠿⠿⠿⠛⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀\n\n");
     }
-    
+
     public static void pressEnter(Scanner dataScanner){
         System.out.println("==================================================================================+++---");
         System.out.println("Pressione 'ENTER' para ir ao menu");
@@ -25,7 +29,7 @@ public class SpotifyApp {
         scanner.close();
     }
 
-    public static SpootifyMusic createMusic(Scanner dataScanner){
+    public static Music createMusic(Scanner dataScanner){
         Scanner stringCutter;
         String title;
         int duration;
@@ -34,14 +38,14 @@ public class SpotifyApp {
         List<String> interpreters = new ArrayList<String>();
         String bigIT;
         String genre;
-        
+
         System.out.println("Titulo:");
         title = dataScanner.nextLine();
 
         System.out.println("Duração:");
         duration = dataScanner.nextInt();
         dataScanner.nextLine();
-        
+
         System.out.println("Genero:");
         genre = dataScanner.nextLine();
 
@@ -67,32 +71,32 @@ public class SpotifyApp {
         }
         stringCutter.close();
 
-        return new SpootifyMusic(title, duration, songwriters, interpreters, genre);
+        return new Music(title, duration, songwriters, interpreters, genre);
     }
 
-    public static SpootifyPodcast createPodcast(Scanner dataScanner){
+    public static Podcast createPodcast(Scanner dataScanner){
         String title;
         int duration;
         String presenter;
         String review;
-        
+
         System.out.println("Titulo:");
         title = dataScanner.nextLine();
 
         System.out.println("Duração:");
         duration = dataScanner.nextInt();
         dataScanner.nextLine();
-        
+
         System.out.println("Apresentador:");
         presenter = dataScanner.nextLine();
 
         System.out.println("Descrição:");
         review = dataScanner.nextLine();
 
-        return new SpootifyPodcast(title, duration, presenter, review);
+        return new Podcast(title, duration, presenter, review);
     }
 
-    public static SpootifyAudiobook createAudioook(Scanner dataScanner){
+    public static AudioBook createAudiobook(Scanner dataScanner){
         Scanner stringCutter;
         String title;
         int duration;
@@ -101,14 +105,14 @@ public class SpotifyApp {
         String storyteller;
         String publisher;
         String synopsis;
-        
+
         System.out.println("Titulo:");
         title = dataScanner.nextLine();;
 
         System.out.println("Duração:");
         duration = dataScanner.nextInt();
         dataScanner.nextLine();
-        
+
         System.out.println("Editora:");
         publisher = dataScanner.nextLine();
 
@@ -129,10 +133,10 @@ public class SpotifyApp {
         }
         stringCutter.close();
 
-        return new SpootifyAudiobook(title, duration, storyteller, synopsis, authors, publisher);
+        return new AudioBook(title, duration, storyteller, synopsis, authors, publisher);
     }
 
-    public static void addToPlaylist(Scanner dataScanner, String playlistTitle, SpootifyMenu menu){
+    public static void addToPlaylist(Scanner dataScanner, String playlistTitle, Menu menu){
         boolean wannaAdd = true;
         int actualCommand;
         while(wannaAdd){
@@ -143,7 +147,7 @@ public class SpotifyApp {
             System.out.println("1. Música | 2. Podcast | 3. Audiobook");
             actualCommand = dataScanner.nextInt();
             dataScanner.nextLine();
-            
+
             switch (actualCommand) {
                 case 1:
                     try{
@@ -156,8 +160,8 @@ public class SpotifyApp {
                         clearTerminal();
                     }
                     break;
-                    
-                
+
+
                 case 2:
                     try{
                         menu.getPlaylist(playlistTitle).addContent(createPodcast(dataScanner));
@@ -166,13 +170,13 @@ public class SpotifyApp {
                         clearTerminal();
                         System.out.println("Entrada inválida!\nNão foi possível adicionar o conteúdo!\nPressione ENTER para continuar");
                         dataScanner.nextLine();
-                        clearTerminal();   
+                        clearTerminal();
                     }
                     break;
-                
+
                 case 3:
                     try{
-                        menu.getPlaylist(playlistTitle).addContent(createAudioook(dataScanner));
+                        menu.getPlaylist(playlistTitle).addContent(createAudiobook(dataScanner));
                         System.out.println("Audiobook adicionado com sucesso!");
                     }catch(InputMismatchException e){
                         clearTerminal();
@@ -181,8 +185,8 @@ public class SpotifyApp {
                         clearTerminal();
                     }
                     break;
-                }
-                
+            }
+
             System.out.println("==================================================================================+++---");
             System.out.println("Deseja adicionar mais um conteúdo?");
             System.out.println("==================================================================================+++---");
@@ -193,8 +197,8 @@ public class SpotifyApp {
         }
     }
 
-    public static void showPlaylistContent(Scanner dataScanner, String playlistTitle, SpootifyMenu menu){
-        List<SpootifyContent> filteredList = new ArrayList<SpootifyContent>();
+    public static void showPlaylistContent(Scanner dataScanner, String playlistTitle, Menu menu){
+        List<Content> filteredList = new ArrayList<Content>();
         int actualCommand;
         int counter;
 
@@ -228,7 +232,7 @@ public class SpotifyApp {
             System.out.println("==================================================================================+++---");
             System.out.println("Esses são seus conteúdos");
             System.out.println("==================================================================================+++---");
-            for (SpootifyContent spootifyContent : filteredList){
+            for (Content spootifyContent : filteredList){
                 System.out.printf("%d | %s\n", counter, spootifyContent.toString());
                 counter += 1;
             }
@@ -239,7 +243,7 @@ public class SpotifyApp {
 
     }
 
-    public static void createPlaylist(Scanner dataScanner, SpootifyMenu menu){
+    public static void createPlaylist(Scanner dataScanner, Menu menu){
         String playlistTitle;
 
         printSpootifyLogo();
@@ -247,7 +251,7 @@ public class SpotifyApp {
         System.out.println("Digite o nome da playlist");
         System.out.println("==================================================================================+++---");
         playlistTitle = dataScanner.nextLine();
-        
+
         if(!menu.playlistExists(playlistTitle)){
             menu.addPlaylist(playlistTitle);
             System.out.println("A playlist " + playlistTitle + " foi criada com sucesso!\n ");
@@ -257,8 +261,8 @@ public class SpotifyApp {
 
         pressEnter(dataScanner);
     }
-    
-    public static void deletePlaylist(Scanner dataScanner, SpootifyMenu menu){
+
+    public static void deletePlaylist(Scanner dataScanner, Menu menu){
         String playlistTitle;
 
         printSpootifyLogo();
@@ -266,7 +270,7 @@ public class SpotifyApp {
         System.out.println("Digite o nome da playlist");
         System.out.println("==================================================================================+++---");
         playlistTitle = dataScanner.nextLine();
-        
+
         if(menu.playlistExists(playlistTitle) && playlistTitle != "library"){
             menu.removePlaylist(playlistTitle);
             System.out.println("A playlist " + playlistTitle + " foi removida com sucesso!\n ");
@@ -278,9 +282,9 @@ public class SpotifyApp {
         pressEnter(dataScanner);
     }
 
-    public static void showPlaylists(Scanner dataScanner, SpootifyMenu menu){
+    public static void showPlaylists(Scanner dataScanner, Menu menu){
         int counter =1;
-        
+
         if(menu.getPlaylists().size() > 1){
             System.out.println("==================================================================================+++---");
             System.out.println("Essas são suas playlists");
@@ -300,13 +304,13 @@ public class SpotifyApp {
         pressEnter(dataScanner);
     }
 
-    public static void main(String[] args){
-        SpootifyMenu myMenu = new SpootifyMenu();
+    public static void main( String[] args )
+    {
+        Menu myMenu = new Menu();
         Scanner dataScanner = new Scanner(System.in);
         int actualCommand = 0;
         String playlistTitle;
 
-        // Criando playlist com dados do usuário
         clearTerminal();
         printSpootifyLogo();
         System.out.println("Olá, seja bem vindo ao sPOOtify!\n");
@@ -342,7 +346,7 @@ public class SpotifyApp {
                     System.out.println(myMenu.getPlaylist("library").getDescription());
                     pressEnter(dataScanner);
                     break;
-                
+
                 // Criar nova playlist
                 case 4:
                     try{
@@ -353,12 +357,12 @@ public class SpotifyApp {
                         clearTerminal();
                     }
                     break;
-                
+
                 // Criar nova playlist
                 case 5:
                     deletePlaylist(dataScanner, myMenu);
                     break;
-                
+
                 // Adicionar a uma playlist
                 case 6:
                     System.out.println("==================================================================================+++---");

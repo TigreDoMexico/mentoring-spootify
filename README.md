@@ -15,3 +15,11 @@ _________________
 Um projeto desenvolvido na disciplina de Programação Orientada a Objetos, para aplicar e aperfeiçoar os conceitos de Orientação a Objetos.
 
 Para o projeto reproduzimos alguns dos conceitos do Spotify, como criação e gestão de playlists, adição/remoção de conteúdo, listagem dos conteúdos presentes na playlist.
+
+## How to Run Locally
+On spootify folder, run the following commands:
+
+```bash
+mvn install
+mvn exec:java
+```

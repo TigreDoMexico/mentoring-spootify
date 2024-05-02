@@ -1,20 +1,22 @@
-import java.util.List;
+package org.com.spootify.entities;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
-public class SpootifyPlaylist extends SpootifyContent {
-    private List<SpootifyContent> contentList;
-    
-    public SpootifyPlaylist(String title){
+public class Playlist extends Content {
+    private List<Content> contentList;
+
+    public Playlist(String title){
         super(title, 0);
-        contentList = new LinkedList<SpootifyContent>();
+        contentList = new LinkedList<Content>();
     }
 
-    public List<SpootifyContent> getContentList() {
+    public List<Content> getContentList() {
         return this.contentList;
     }
 
-    public void setContentList(List<SpootifyContent> contentList) {
+    public void setContentList(List<Content> contentList) {
         this.contentList = contentList;
     }
 
@@ -31,30 +33,30 @@ public class SpootifyPlaylist extends SpootifyContent {
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
-    public void addContent(SpootifyContent content){
+    public void addContent(Content content){
         contentList.add(content);
         this.setDuration(this.getDuration() + content.getDuration());
     }
 
-    public void removeContent(SpootifyContent content){
+    public void removeContent(Content content){
         if(contentList.contains(content))
             contentList.remove(content);
-            this.setDuration(this.getDuration() - content.getDuration());
+        this.setDuration(this.getDuration() - content.getDuration());
     }
 
-    public List<SpootifyContent> filterBy(boolean music, boolean podcast, boolean audiobook){
+    public List<Content> filterBy(boolean music, boolean podcast, boolean audiobook){
 
-        List<SpootifyContent> filteredList = new ArrayList<SpootifyContent>();
-        
-        for (SpootifyContent content : this.contentList){
+        List<Content> filteredList = new ArrayList<Content>();
 
-            if(content.getClass() == SpootifyMusic.class && music)
+        for (Content content : this.contentList){
+
+            if(content.getClass() == Music.class && music)
                 filteredList.add(content);
 
-            if(content.getClass() == SpootifyPodcast.class && podcast)
+            if(content.getClass() == Podcast.class && podcast)
                 filteredList.add(content);
 
-            if(content.getClass() == SpootifyAudiobook.class && audiobook)
+            if(content.getClass() == AudioBook.class && audiobook)
                 filteredList.add(content);
         }
 

@@ -1,11 +1,16 @@
+package org.com.spootify.entities;
+
+import org.com.spootify.helpers.StringHelpers;
+
 import java.util.InputMismatchException;
 
-public abstract class SpootifyContent{
+public abstract class Content {
     protected String title;
     protected int duration;
 
-    public SpootifyContent(String title, int duration){
-        if(title.isBlank()) throw new InputMismatchException("Entrada inválida");
+    public Content(String title, int duration) {
+        if(StringHelpers.isBlank(title)) throw new InputMismatchException("Entrada inválida");
+
         this.title = title;
         this.duration = duration;
     }
